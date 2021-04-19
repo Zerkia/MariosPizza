@@ -4,15 +4,17 @@ import java.util.ArrayList;
 
 public class Main {
 
-  ArrayList<MenuKort> menu = new ArrayList<>();
+  //ArrayList<MenuKort> menu = new ArrayList<>();
+  MenuKort menu = new MenuKort();
 
   public void displayMenuKort(){
-    for (int i = 0; i < menu.size(); i++) {
-      System.out.println(menu.get(i));
+    for (int i = 0; i < menu.menuKort.size(); i++) {
+      System.out.println(menu.menuKort.get(i));
     }
   }
 
   void run(){
+    menu.makeMenuKort();
     displayMenuKort();
   }
 

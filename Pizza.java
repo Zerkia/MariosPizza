@@ -3,10 +3,12 @@ package MariosPizza;
 public class Pizza {
   private int ID;
   private String name;
+  private int pris;
 
-  public Pizza(int ID, String name) {
+  public Pizza(int ID, String name, int pris) {
     setID(ID);
     setName(name);
+    setPris(pris);
   }
 
   public String getName() {
@@ -17,6 +19,10 @@ public class Pizza {
     return ID;
   }
 
+  public int getPris() {
+    return pris;
+  }
+
   public void setName(String name) {
     this.name = name;
   }
@@ -25,8 +31,12 @@ public class Pizza {
     this.ID = ID;
   }
 
+  public void setPris(int pris) {
+    this.pris = pris;
+  }
+
   @Override
   public String toString() {
-    return "Pizza: " + ID + " name: " + name;
+    return "Nummer: " + ID + " navn: " + name + " pris: " + pris;
   }
 }
