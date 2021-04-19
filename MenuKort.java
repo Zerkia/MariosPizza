@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 /**
  *
- * menuKort = Nikolaj, Mads,
+ * menuKort = Nikolaj, Mads
  *
  */
 

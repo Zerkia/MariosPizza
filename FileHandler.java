@@ -8,13 +8,13 @@ import java.util.Scanner;
 
 /**
  *
- * FileHandler = Nikolaj ide (Work in Progress, ownership can change)
+ * FileHandler = Nikolaj, Mads
  *
  */
 
 public class FileHandler {
   public void saveFile(ArrayList<Pizza> pizzas) {
-    File file = new File("MariosPizza/aktiveOrdre.txt");
+    File file = new File("Week16/aktiveOrdre.txt");
     try{
       PrintStream save = new PrintStream(file);
       for (int i = 0; i < pizzas.size(); i++) {
@@ -27,7 +27,7 @@ public class FileHandler {
   }
 
   public ArrayList<String> readActiveOrders() {
-    File file = new File("MariosPizza/aktiveOrdre.txt");
+    File file = new File("src/aktiveOrdre.txt");
     ArrayList<String> output = new ArrayList<>();
 
     try{

@@ -2,7 +2,7 @@ package MariosPizza;
 
 /**
  *
- * Pizza = Nikolaj, Mads, Nicholas
+ * Pizza = Nikolaj, Mads
  *
  */
 
@@ -11,17 +11,26 @@ public class Pizza {
   private int ID;
   private String name;
   private String ingredients;
-  private int pris;
+  private int price;
 
-  public Pizza(int ID, String name){
+  //Constructors
+  //Constructor for placing order
+  /**public Pizza(int ID, String name){
     setID(ID);
     setName(name);
+  }*/
+  //Constructor for aktiveOrdre.txt file
+  public Pizza(int ID, String name, int price){
+    setID(ID);
+    setName(name);
+    setPrice(price);
   }
+  //Constructor for MenuKort.java file
   public Pizza(int ID, String name, String ingredients, int pris) {
     setID(ID);
     setName(name);
     setIngredients(ingredients);
-    setPris(pris);
+    setPrice(pris);
   }
 
   public String getName() {
@@ -32,8 +41,8 @@ public class Pizza {
     return ID;
   }
 
-  public int getPris() {
-    return pris;
+  public int getPrice() {
+    return price;
   }
 
   public String getIngredients() {
@@ -48,18 +57,17 @@ public class Pizza {
     this.ID = ID;
   }
 
-  public void setPris(int pris) {
-    this.pris = pris;
+  public void setPrice(int price) {
+    this.price = price;
   }
 
   public void setIngredients(String ingredients) {
     this.ingredients = ingredients;
   }
 
-  
 
   @Override
   public String toString() {
-    return getID() + ". " +  getName() + ": " + getIngredients() + "\npris: " + getPris();
+    return getID() + ". " +  getName() + ": " + getIngredients() + "\npris: " + getPrice();
   }
 }
