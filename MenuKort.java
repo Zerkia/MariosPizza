@@ -11,4 +11,10 @@ public class MenuKort {
     menuKort.add(new Pizza(3, "Cacciatore", 57));
     menuKort.add(new Pizza(4, "Carbona", 63));
   }
+
+  public void displayMenuKort(){
+    for (int i = 0; i < menuKort.size(); i++) {
+      System.out.println(menuKort.get(i));
+    }
+  }
 }
