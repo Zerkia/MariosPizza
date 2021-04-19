@@ -9,5 +9,6 @@ public class MenuKort {
 
   public void makeMenuKort(){
     menuKort.add(new Pizza(1, "Vesuvio"));
+    menuKort.add(new Pizza(2, "test"));
   }
 }

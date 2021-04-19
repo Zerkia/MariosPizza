@@ -1,12 +1,14 @@
 package MariosPizza;
 
+import java.util.ArrayList;
+
 public class Main {
 
-  MenuKort menu = new MenuKort();
+  ArrayList<MenuKort> menu = new ArrayList<>();
 
   public void displayMenuKort(){
-    for (int i = 0; i < menu.menuKort.size(); i++) {
-      System.out.println(menu.menuKort.get(i));
+    for (int i = 0; i < menu.size(); i++) {
+      System.out.println(menu.get(i));
     }
   }
 
