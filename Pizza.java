@@ -68,6 +68,7 @@ public class Pizza {
 
   @Override
   public String toString() {
-    return getID() + ". " +  getName() + ": " + getIngredients() + "\npris: " + getPrice();
+    //return getID() + ". " +  getName() + ": " + getIngredients() + "\npris: " + getPrice();
+    return getID() + ". " + getName() + ": " + "\npris: " + getPrice();
   }
 }

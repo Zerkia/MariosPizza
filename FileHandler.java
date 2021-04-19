@@ -14,9 +14,11 @@ import java.util.Scanner;
 
 public class FileHandler {
   public void saveFile(ArrayList<Pizza> pizzas) {
-    File file = new File("Week16/aktiveOrdre.txt");
+    File file = new File("src/aktiveOrdre.txt");
     try{
       PrintStream save = new PrintStream(file);
+
+      //Never seems to reach for loop
       for (int i = 0; i < pizzas.size(); i++) {
         save.println(pizzas.get(i));
       }
@@ -30,6 +32,7 @@ public class FileHandler {
     File file = new File("src/aktiveOrdre.txt");
     ArrayList<String> output = new ArrayList<>();
 
+    //Doesn't seem to want to read file properly
     try{
       Scanner scan = new Scanner(file);
       while (scan.hasNextLine()){

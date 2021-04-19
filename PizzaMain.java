@@ -23,9 +23,10 @@ public class PizzaMain {
 
     for (int i = 0; i < load.size(); i++) {
 
-      int fetchID = Integer.parseInt(load.get(i));
-      String fetchName = load.get(i);
-      int fetchPrice = Integer.parseInt(load.get(i));
+      //Should work, untested due to file not loading properly in FileHandler
+      int fetchID = Integer.parseInt(load.get(i).substring(1, 1));
+      String fetchName = load.get(i).substring(load.indexOf(":"));
+      int fetchPrice = Integer.parseInt(load.get(i).substring(6));
 
       pizzas.add(new Pizza(fetchID, fetchName, fetchPrice));
     }
@@ -45,8 +46,9 @@ public class PizzaMain {
 
     System.out.print("Enter price: ");
     int price = scan.nextInt();
+    scan.nextLine();
 
-    return new Pizza(ID, name, price);
+    return new Pizza(1, "test", 5);
   }
 
   public void viewActiveOrders(){
@@ -60,7 +62,8 @@ public class PizzaMain {
     //menu.displayMenuKort();
     //System.out.println();
     viewActiveOrders();
-    //createNewOrder();
+    //Pizza test = createNewOrder();
+    //System.out.println(pizzas);
     //pizzaFiles.saveFile(pizzas);
   }
 

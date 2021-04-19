@@ -6,6 +6,8 @@ import java.util.ArrayList;
  *
  * menuKort = Nikolaj, Mads
  *
+ * Add get/sets and toString for this to make Pizza.java A LOT easier to work with.
+ *
  */
 
 public class MenuKort {
