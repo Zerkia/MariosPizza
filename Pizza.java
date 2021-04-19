@@ -1,13 +1,22 @@
 package MariosPizza;
 
+/**
+ *
+ * Pizza = Nikolaj, Mads, Nicholas
+ *
+ */
+
+
 public class Pizza {
   private int ID;
   private String name;
+  private String ingredients;
   private int pris;
 
-  public Pizza(int ID, String name, int pris) {
+  public Pizza(int ID, String name, String ingredients, int pris) {
     setID(ID);
     setName(name);
+    setIngredients(ingredients);
     setPris(pris);
   }
 
@@ -23,6 +32,10 @@ public class Pizza {
     return pris;
   }
 
+  public String getIngredients() {
+    return ingredients;
+  }
+
   public void setName(String name) {
     this.name = name;
   }
@@ -35,8 +48,12 @@ public class Pizza {
     this.pris = pris;
   }
 
+  public void setIngredients(String ingredients) {
+    this.ingredients = ingredients;
+  }
+
   @Override
   public String toString() {
-    return "Nummer: " + ID + " navn: " + name + " pris: " + pris;
+    return ID + ". " +  name + ": " + ingredients + "\npris: " + pris;
   }
 }

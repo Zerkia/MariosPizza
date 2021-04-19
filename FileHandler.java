@@ -6,6 +6,12 @@ import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+/**
+ *
+ * FileHandler = Nikolaj ide (Work in Progress, ownership can change)
+ *
+ */
+
 public class FileHandler {
   /**public void saveFile(ArrayList<User> users) {
     File file = new File("MariosPizza/aktiveOrdre.txt");
