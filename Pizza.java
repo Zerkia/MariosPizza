@@ -26,11 +26,11 @@ public class Pizza {
     setPrice(price);
   }
   //Constructor for MenuKort.java file
-  public Pizza(int ID, String name, String ingredients, int pris) {
+  public Pizza(int ID, String name, String ingredients, int price) {
     setID(ID);
     setName(name);
     setIngredients(ingredients);
-    setPrice(pris);
+    setPrice(price);
   }
 
   public String getName() {
@@ -41,12 +41,10 @@ public class Pizza {
     return ID;
   }
 
+  public String getIngredients() { return ingredients; }
+
   public int getPrice() {
     return price;
-  }
-
-  public String getIngredients() {
-    return ingredients;
   }
 
   public void setName(String name) {
@@ -69,6 +67,7 @@ public class Pizza {
   @Override
   public String toString() {
     //return getID() + ". " +  getName() + ": " + getIngredients() + "\npris: " + getPrice();
-    return getID() + ". " + getName() + ": " + "\npris: " + getPrice();
+    return getID() + ". \n" + getName() + ": \n" + "pris: " + getPrice() + "\n";
+    //return "ID: " + getID() + "name: " + getName() + "price: " + getPrice();
   }
 }

@@ -12,8 +12,6 @@ import java.util.Scanner;
 public class PizzaMain {
   MenuKort menu = new MenuKort();
 
-  private final String ACTIVE = "src/aktiveOrdre.txt";
-  //private final String COMPLETED = "MariosPizza/færdigeOrdre.txt";
   private static final FileHandler pizzaFiles = new FileHandler();
   ArrayList<Pizza> pizzas = loadActiveOrders();
 
@@ -21,12 +19,12 @@ public class PizzaMain {
    ArrayList<String> load = pizzaFiles.readActiveOrders();
     ArrayList<Pizza> pizzas = new ArrayList<>();
 
-    for (int i = 0; i < load.size(); i++) {
+    for (int i = 0; i < load.size(); i+=3) {
 
       //Should work, untested due to file not loading properly in FileHandler
-      int fetchID = Integer.parseInt(load.get(i).substring(1, 1));
-      String fetchName = load.get(i).substring(load.indexOf(":"));
-      int fetchPrice = Integer.parseInt(load.get(i).substring(6));
+      int fetchID = Integer.parseInt(load.get(i));
+      String fetchName = load.get(i+1);
+      int fetchPrice = Integer.parseInt(load.get(i+2));
 
       pizzas.add(new Pizza(fetchID, fetchName, fetchPrice));
     }
@@ -48,7 +46,7 @@ public class PizzaMain {
     int price = scan.nextInt();
     scan.nextLine();
 
-    return new Pizza(1, "test", 5);
+    return new Pizza(ID, name, price);
   }
 
   public void viewActiveOrders(){
@@ -62,9 +60,9 @@ public class PizzaMain {
     //menu.displayMenuKort();
     //System.out.println();
     viewActiveOrders();
-    //Pizza test = createNewOrder();
-    //System.out.println(pizzas);
-    //pizzaFiles.saveFile(pizzas);
+    pizzas.add(createNewOrder());
+    System.out.println(pizzas);
+    pizzaFiles.saveFile(pizzas);
   }
 
   public static void main(String[] args) {

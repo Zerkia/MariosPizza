@@ -22,7 +22,7 @@ public class MenuKort {
 
   public void displayMenuKort(){
     for (int i = 0; i < menuKort.size(); i++) {
-      System.out.println(menuKort.get(i));
+      System.out.println(menuKort.get(i).getID());
     }
   }
 }
