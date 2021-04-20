@@ -12,6 +12,7 @@ public class Pizza {
   private String name;
   private String ingredients;
   private int price;
+  private String customerName;
 
   //Constructors
   //Constructor for placing order
@@ -20,6 +21,11 @@ public class Pizza {
     setName(name);
   }*/
   //Constructor for aktiveOrdre.txt file
+  public Pizza(int ID, String customerName){
+    setID(ID);
+    setCustomerName(customerName);
+  }
+
   public Pizza(int ID, String name, int price){
     setID(ID);
     setName(name);
@@ -45,6 +51,14 @@ public class Pizza {
 
   public int getPrice() {
     return price;
+  }
+
+  public String getCustomerName() {
+    return customerName;
+  }
+
+  public void setCustomerName(String customerName) {
+    this.customerName = customerName;
   }
 
   public void setName(String name) {

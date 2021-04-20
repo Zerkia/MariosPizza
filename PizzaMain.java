@@ -23,10 +23,11 @@ public class PizzaMain {
 
       //Should work, untested due to file not loading properly in FileHandler
       int fetchID = Integer.parseInt(load.get(i));
-      String fetchName = load.get(i+1);
-      int fetchPrice = Integer.parseInt(load.get(i+2));
+      String fetchCustomerName = load.get(i+1);
+      //String fetchName = load.get(i+1);
+      //int fetchPrice = Integer.parseInt(load.get(i+2));
 
-      pizzas.add(new Pizza(fetchID, fetchName, fetchPrice));
+      pizzas.add(new Pizza(fetchID, fetchCustomerName));
     }
 
     return pizzas;
@@ -35,18 +36,14 @@ public class PizzaMain {
   public Pizza createNewOrder(){
     Scanner scan = new Scanner(System.in);
 
-    System.out.print("Enter ID: ");
+    System.out.print("Enter ID / Pizza Number: ");
     int ID = scan.nextInt();
     scan.nextLine();
 
-    System.out.print("Enter name: ");
-    String name = scan.nextLine();
+    System.out.print("Enter name of customer: ");
+    String customerName = scan.nextLine();
 
-    System.out.print("Enter price: ");
-    int price = scan.nextInt();
-    scan.nextLine();
-
-    return new Pizza(ID, name, price);
+    return new Pizza(ID, customerName);
   }
 
   public void viewActiveOrders(){

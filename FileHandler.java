@@ -19,8 +19,9 @@ public class FileHandler {
       PrintStream save = new PrintStream(file);
       for (int i = 0; i < pizzas.size(); i++) {
         save.println(pizzas.get(i).getID());
-        save.println(pizzas.get(i).getName());
-        save.println(pizzas.get(i).getPrice());
+        save.println(pizzas.get(i).getCustomerName());
+        //save.println(pizzas.get(i).getName());
+        //save.println(pizzas.get(i).getPrice());
       }
       save.close();
     } catch(FileNotFoundException e) {
