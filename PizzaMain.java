@@ -92,7 +92,9 @@ public class PizzaMain {
       compPiz = completedPizzas.get(i).getID();
       arr[compPiz-1] += 1;
     }
-    System.out.println("Total: " + arr[0]);
+    System.out.println("Total amount of no. 1's: " + arr[0]);
+    System.out.println("Total amount of no. 2's: " + arr[1]);
+    System.out.println("Total amount of no. 3's: " + arr[2]);
   }
 
   public void viewCompletedOrders(){
