@@ -13,24 +13,35 @@ public class PizzaMain {
   MenuKort menu = new MenuKort();
 
   private static final FileHandler pizzaFiles = new FileHandler();
-  ArrayList<Pizza> pizzas = loadActiveOrders();
+  ArrayList<Pizza> activePizzas = loadActiveOrders();
+  ArrayList<Pizza> completedPizzas = loadCompletedOrders();
 
   public ArrayList<Pizza> loadActiveOrders() {
     ArrayList<String> load = pizzaFiles.readActiveOrders();
-    ArrayList<Pizza> pizzas = new ArrayList<>();
+    ArrayList<Pizza> activePizzas = new ArrayList<>();
 
     for (int i = 0; i < load.size(); i+=3) {
-
-      //Should work, untested due to file not loading properly in FileHandler
       int fetchID = Integer.parseInt(load.get(i));
       String fetchCustomerName = load.get(i+1);
-      //String fetchName = load.get(i+1);
-      //int fetchPrice = Integer.parseInt(load.get(i+2));
 
-      pizzas.add(new Pizza(fetchID, fetchCustomerName));
+      activePizzas.add(new Pizza(fetchID, fetchCustomerName));
     }
 
-    return pizzas;
+    return activePizzas;
+  }
+
+  public ArrayList<Pizza> loadCompletedOrders() {
+    ArrayList<String> load = pizzaFiles.readCompletedOrders();
+    ArrayList<Pizza> completedPizzas = new ArrayList<>();
+
+    for (int i = 0; i < load.size(); i+=3) {
+      int fetchID = Integer.parseInt(load.get(i));
+      String fetchCustomerName = load.get(i+1);
+
+      completedPizzas.add(new Pizza(fetchID, fetchCustomerName));
+    }
+
+    return completedPizzas;
   }
 
   public Pizza createNewOrder(){
@@ -47,8 +58,20 @@ public class PizzaMain {
   }
 
   public void viewActiveOrders(){
-    for (int i = 0; i < pizzas.size(); i++) {
-      System.out.println(pizzas.get(i));
+    for (int i = 0; i < activePizzas.size(); i++) {
+      System.out.println(activePizzas.get(i));
+    }
+  }
+
+  public void statistics(){
+    for (int i = 0; i < completedPizzas.size(); i++) {
+      System.out.println(completedPizzas.get(i).getID());
+    }
+  }
+
+  public void viewCompletedOrders(){
+    for (int i = 0; i < completedPizzas.size(); i++) {
+      System.out.println(completedPizzas.get(i));
     }
   }
 
@@ -60,22 +83,26 @@ public class PizzaMain {
     //failsafe
     if(removalInt < 0){
       removalInt = 0;
-    } else if (removalInt > pizzas.size()) {
-      removalInt = pizzas.size()-1;
+    } else if (removalInt > activePizzas.size()) {
+      removalInt = activePizzas.size()-1;
     }
 
-    pizzas.remove(removalInt);
+    completedPizzas.add(new Pizza(activePizzas.get(removalInt).getID(), activePizzas.get(removalInt).getCustomerName()));
+    activePizzas.remove(removalInt);
   }
 
   void run(){
+    statistics();
     //menu.makeMenuKort();
     //menu.displayMenuKort();
     //System.out.println();
     //viewActiveOrders();
-    //pizzas.add(createNewOrder());
-    //System.out.println(pizzas);
+    //viewCompletedOrders();
+    //activePizzas.add(createNewOrder());
+    //System.out.println(activePizzas);
     //deleteUser();
-    pizzaFiles.saveFile(pizzas);
+    //pizzaFiles.saveCompletedPizzas(completedPizzas);
+    //pizzaFiles.saveActivePizzas(activePizzas);
   }
 
   public static void main(String[] args) {
