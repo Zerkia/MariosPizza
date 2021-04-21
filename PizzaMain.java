@@ -64,9 +64,13 @@ public class PizzaMain {
   }
 
   public void statistics(){
+    int[] arr = new int[20];
     for (int i = 0; i < completedPizzas.size(); i++) {
-      System.out.println(completedPizzas.get(i).getID());
+      int compPiz = completedPizzas.get(i).getID();
+      arr[compPiz-1] += 1;
+
     }
+    System.out.println(arr[1]);
   }
 
   public void viewCompletedOrders(){
