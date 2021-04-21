@@ -1,11 +1,18 @@
 package MariosPizza;
 
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 
 /**
  *
  * Nikolaj, Mads
+ *
+ * Statistics unfinished, needs menu in the end to more easily navigate everything
+ * Nikolaj has menu file from other project that can be transferred semi-easily
  *
  */
 
@@ -20,11 +27,14 @@ public class PizzaMain {
     ArrayList<String> load = pizzaFiles.readActiveOrders();
     ArrayList<Pizza> activePizzas = new ArrayList<>();
 
-    for (int i = 0; i < load.size(); i+=3) {
+    //fails if aktiveOrdre.txt is empty, if load.size() <= 0 didn't work.
+    //maybe a throw needed?
+    for (int i = 0; i < load.size(); i+=4) {
       int fetchID = Integer.parseInt(load.get(i));
       String fetchCustomerName = load.get(i+1);
+      String fetchTime = load.get(i+2);
 
-      activePizzas.add(new Pizza(fetchID, fetchCustomerName));
+      activePizzas.add(new Pizza(fetchID, fetchCustomerName, fetchTime));
     }
 
     return activePizzas;
@@ -34,11 +44,14 @@ public class PizzaMain {
     ArrayList<String> load = pizzaFiles.readCompletedOrders();
     ArrayList<Pizza> completedPizzas = new ArrayList<>();
 
-    for (int i = 0; i < load.size(); i+=3) {
+    //fails if færdigeOrdre.txt is empty, if load.size() <= 0 didn't work.
+    //maybe a throw needed?
+    for (int i = 0; i < load.size(); i+=4) {
       int fetchID = Integer.parseInt(load.get(i));
       String fetchCustomerName = load.get(i+1);
+      String fetchTime = load.get(i+2);
 
-      completedPizzas.add(new Pizza(fetchID, fetchCustomerName));
+      completedPizzas.add(new Pizza(fetchID, fetchCustomerName, fetchTime));
     }
 
     return completedPizzas;
@@ -46,6 +59,9 @@ public class PizzaMain {
 
   public Pizza createNewOrder(){
     Scanner scan = new Scanner(System.in);
+    LocalTime time = LocalTime.now();
+    DateTimeFormatter format = DateTimeFormatter.ofPattern("HH:mm:ss");
+    String formattedDate = time.format(format);
 
     System.out.print("Enter ID / Pizza Number: ");
     int ID = scan.nextInt();
@@ -54,7 +70,9 @@ public class PizzaMain {
     System.out.print("Enter name of customer: ");
     String customerName = scan.nextLine();
 
-    return new Pizza(ID, customerName);
+    String fetchTime = formattedDate;
+
+    return new Pizza(ID, customerName, fetchTime);
   }
 
   public void viewActiveOrders(){
@@ -65,12 +83,16 @@ public class PizzaMain {
 
   public void statistics(){
     int[] arr = new int[20];
-    for (int i = 0; i < completedPizzas.size(); i++) {
-      int compPiz = completedPizzas.get(i).getID();
-      arr[compPiz-1] += 1;
+    int compPiz;
 
+    //Seems to only count 1's?
+    //needs to somehow count each pizza ID and display how many of each
+    //I.e. 2 1's, 5 2's, 3 3's.
+    for (int i = 0; i < completedPizzas.size(); i++) {
+      compPiz = completedPizzas.get(i).getID();
+      arr[compPiz-1] += 1;
     }
-    System.out.println(arr[1]);
+    System.out.println("Total: " + arr[0]);
   }
 
   public void viewCompletedOrders(){
@@ -83,6 +105,9 @@ public class PizzaMain {
     System.out.print("Please enter a number to remove the corresponding order number: ");
     Scanner scan = new Scanner(System.in);
     int removalInt = scan.nextInt()-1;
+    LocalTime time = LocalTime.now();
+    DateTimeFormatter format = DateTimeFormatter.ofPattern("HH:mm:ss");
+    String formattedDate = time.format(format);
 
     //failsafe
     if(removalInt < 0){
@@ -91,7 +116,11 @@ public class PizzaMain {
       removalInt = activePizzas.size()-1;
     }
 
-    completedPizzas.add(new Pizza(activePizzas.get(removalInt).getID(), activePizzas.get(removalInt).getCustomerName()));
+    completedPizzas.add(new Pizza(
+        activePizzas.get(removalInt).getID(),
+        activePizzas.get(removalInt).getCustomerName(),
+        formattedDate
+    ));
     activePizzas.remove(removalInt);
   }
 

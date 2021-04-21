@@ -10,6 +10,7 @@ package MariosPizza;
 public class Pizza {
   private int ID;
   private String customerName;
+  private String time;
 
   //Constructors
   //Constructor for placing order
@@ -18,9 +19,10 @@ public class Pizza {
     setName(name);
   }*/
   //Constructor for aktiveOrdre.txt file
-  public Pizza(int ID, String customerName){
+  public Pizza(int ID, String customerName, String time){
     setID(ID);
     setCustomerName(customerName);
+    setTime(time);
   }
 
   public int getID() {
@@ -31,6 +33,8 @@ public class Pizza {
     return customerName;
   }
 
+  public String getTime() { return time; }
+
   public void setID(int ID) {
     this.ID = ID;
   }
@@ -39,8 +43,10 @@ public class Pizza {
     this.customerName = customerName;
   }
 
+  public void setTime(String time) { this.time = time; }
+
   @Override
   public String toString() {
-    return "Pizza Number: " + getID() + "\nCustomer name: " + getCustomerName();
+    return "Pizza Number: " + getID() + "\nCustomer name: " + getCustomerName() + "\nTime: " + getTime();
   }
 }

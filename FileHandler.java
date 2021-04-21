@@ -5,6 +5,8 @@ import java.io.FileNotFoundException;
 import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 
 /**
  *
@@ -15,11 +17,13 @@ import java.util.Scanner;
 public class FileHandler {
   public void saveActivePizzas(ArrayList<Pizza> activePizzas) {
     File file = new File("src/MariosPizza/aktiveOrdre.txt");
+
     try{
       PrintStream save = new PrintStream(file);
       for (int i = 0; i < activePizzas.size(); i++) {
         save.println(activePizzas.get(i).getID());
         save.println(activePizzas.get(i).getCustomerName());
+        save.println(activePizzas.get(i).getTime());
         save.println();
       }
       save.close();
@@ -35,6 +39,7 @@ public class FileHandler {
       for (int i = 0; i < completedPizzas.size(); i++) {
         save.println(completedPizzas.get(i).getID());
         save.println(completedPizzas.get(i).getCustomerName());
+        save.println(completedPizzas.get(i).getTime());
         save.println();
       }
       save.close();
