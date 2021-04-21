@@ -16,7 +16,7 @@ public class PizzaMain {
   ArrayList<Pizza> pizzas = loadActiveOrders();
 
   public ArrayList<Pizza> loadActiveOrders() {
-   ArrayList<String> load = pizzaFiles.readActiveOrders();
+    ArrayList<String> load = pizzaFiles.readActiveOrders();
     ArrayList<Pizza> pizzas = new ArrayList<>();
 
     for (int i = 0; i < load.size(); i+=3) {
@@ -52,13 +52,29 @@ public class PizzaMain {
     }
   }
 
+  public void deleteUser() {
+    System.out.print("Please enter a number to remove the corresponding order number: ");
+    Scanner scan = new Scanner(System.in);
+    int removalInt = scan.nextInt()-1;
+
+    //failsafe
+    if(removalInt < 0){
+      removalInt = 0;
+    } else if (removalInt > pizzas.size()) {
+      removalInt = pizzas.size()-1;
+    }
+
+    pizzas.remove(removalInt);
+  }
+
   void run(){
     //menu.makeMenuKort();
     //menu.displayMenuKort();
     //System.out.println();
-    viewActiveOrders();
-    pizzas.add(createNewOrder());
-    System.out.println(pizzas);
+    //viewActiveOrders();
+    //pizzas.add(createNewOrder());
+    //System.out.println(pizzas);
+    //deleteUser();
     pizzaFiles.saveFile(pizzas);
   }
 

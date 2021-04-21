@@ -9,9 +9,6 @@ package MariosPizza;
 
 public class Pizza {
   private int ID;
-  private String name;
-  private String ingredients;
-  private int price;
   private String customerName;
 
   //Constructors
@@ -26,62 +23,24 @@ public class Pizza {
     setCustomerName(customerName);
   }
 
-  public Pizza(int ID, String name, int price){
-    setID(ID);
-    setName(name);
-    setPrice(price);
-  }
-  //Constructor for MenuKort.java file
-  public Pizza(int ID, String name, String ingredients, int price) {
-    setID(ID);
-    setName(name);
-    setIngredients(ingredients);
-    setPrice(price);
-  }
-
-  public String getName() {
-    return name;
-  }
-
   public int getID() {
     return ID;
-  }
-
-  public String getIngredients() { return ingredients; }
-
-  public int getPrice() {
-    return price;
   }
 
   public String getCustomerName() {
     return customerName;
   }
 
-  public void setCustomerName(String customerName) {
-    this.customerName = customerName;
-  }
-
-  public void setName(String name) {
-    this.name = name;
-  }
-
   public void setID(int ID) {
     this.ID = ID;
   }
 
-  public void setPrice(int price) {
-    this.price = price;
+  public void setCustomerName(String customerName) {
+    this.customerName = customerName;
   }
-
-  public void setIngredients(String ingredients) {
-    this.ingredients = ingredients;
-  }
-
 
   @Override
   public String toString() {
-    //return getID() + ". " +  getName() + ": " + getIngredients() + "\npris: " + getPrice();
-    return getID() + ". \n" + getName() + ": \n" + "pris: " + getPrice() + "\n";
-    //return "ID: " + getID() + "name: " + getName() + "price: " + getPrice();
+    return "Pizza Number: " + getID() + "\nCustomer name: " + getCustomerName();
   }
 }

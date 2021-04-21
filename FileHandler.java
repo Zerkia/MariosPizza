@@ -8,7 +8,7 @@ import java.util.Scanner;
 
 /**
  *
- * FileHandler = Nikolaj, Mads
+ * FileHandler = Nikolaj
  *
  */
 
@@ -20,6 +20,7 @@ public class FileHandler {
       for (int i = 0; i < pizzas.size(); i++) {
         save.println(pizzas.get(i).getID());
         save.println(pizzas.get(i).getCustomerName());
+        save.println();
         //save.println(pizzas.get(i).getName());
         //save.println(pizzas.get(i).getPrice());
       }
