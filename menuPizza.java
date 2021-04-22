@@ -54,6 +54,6 @@ public class menuPizza {
 
   @Override
   public String toString() {
-    return getID() + ". " + getName() + " " + getIngredients() + "\nPris: " + getPrice() + " DKK\n";
+    return getID() + ". " + getName() + ": " + getIngredients() + "\nPris: " + getPrice() + " DKK\n";
   }
 }
