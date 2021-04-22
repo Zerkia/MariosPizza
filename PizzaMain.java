@@ -9,8 +9,8 @@ import java.util.Scanner;
  *
  * Nikolaj, Mads
  *
- * Statistics unfinished, needs menu in the end to more easily navigate everything
- * Nikolaj has menu file from other project that can be transferred semi-easily
+ * Technically finished, but some methods have room for improvement and probably some sort of optimization.
+ *
  *
  */
 
@@ -55,6 +55,7 @@ public class PizzaMain {
     return completedPizzas;
   }
 
+  //Doesn't work if aktiveOrdre.txt is empty
   public Pizza createNewOrder(){
     Scanner scan = new Scanner(System.in);
     LocalTime time = LocalTime.now();
@@ -68,37 +69,10 @@ public class PizzaMain {
     System.out.print("Enter name of customer: ");
     String customerName = scan.nextLine();
 
-    String fetchTime = formattedDate;
-
-    return new Pizza(ID, customerName, fetchTime);
+    return new Pizza(ID, customerName, formattedDate);
   }
 
-  public void viewActiveOrders(){
-    for (int i = 0; i < activePizzas.size(); i++) {
-      System.out.println(activePizzas.get(i));
-    }
-  }
-
-  public void ViewStatistics(){
-    int[] arr = new int[menu.menuKort.size()];
-    int compPiz;
-
-    for (int j = 0; j < completedPizzas.size(); j++) {
-      compPiz = completedPizzas.get(j).getID();
-      arr[compPiz-1] += 1;
-    }
-
-    for (int i = 0; i < arr.length; i++) {
-      System.out.println("Total amount of no. " + (i+1) + " " + menu.menuKort.get(i).getName() + "'s: " + arr[i]);
-    }
-  }
-
-  public void viewCompletedOrders(){
-    for (int i = 0; i < completedPizzas.size(); i++) {
-      System.out.println(completedPizzas.get(i));
-    }
-  }
-
+  //Doesn't work if færdigeOrdre.txt is empty
   public void deleteActiveOrder() {
     System.out.print("Please enter a number to remove the corresponding order number: ");
     Scanner scan = new Scanner(System.in);
@@ -122,6 +96,36 @@ public class PizzaMain {
     activePizzas.remove(removalInt);
   }
 
+  //Could maybe have a sorting logic for the most recent time?
+  //A.k.a. the most urgent order that needs to be completed within the 1 hour.
+  public void viewActiveOrders(){
+    for (int i = 0; i < activePizzas.size(); i++) {
+      System.out.println(activePizzas.get(i));
+    }
+  }
+
+  public void viewCompletedOrders(){
+    for (int i = 0; i < completedPizzas.size(); i++) {
+      System.out.println(completedPizzas.get(i));
+    }
+  }
+
+  //Could have a formula for displaying a sentence saying which pizza is the most popular?
+  public void ViewStatistics(){
+    int[] arr = new int[menu.menuKort.size()];
+    int compPiz;
+
+    for (int j = 0; j < completedPizzas.size(); j++) {
+      compPiz = completedPizzas.get(j).getID();
+      arr[compPiz-1] += 1;
+    }
+
+    for (int i = 0; i < arr.length; i++) {
+      System.out.println("Total amount of no. " + (i+1) + " " + menu.menuKort.get(i).getName() + "'s: " + arr[i]);
+    }
+  }
+
+  //Doesn't work if either aktiveOrdre.txt or færdigeOrdre.txt is empty
   void run(){
     DisplayMenu displayMenu =
         new DisplayMenu(
