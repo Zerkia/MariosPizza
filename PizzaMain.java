@@ -4,8 +4,6 @@ import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Scanner;
-import java.time.LocalTime;
-import java.time.format.DateTimeFormatter;
 
 /**
  *
@@ -81,20 +79,18 @@ public class PizzaMain {
     }
   }
 
-  public void statistics(){
-    int[] arr = new int[20];
+  public void ViewStatistics(){
+    int[] arr = new int[menu.menuKort.size()];
     int compPiz;
 
-    //Seems to only count 1's?
-    //needs to somehow count each pizza ID and display how many of each
-    //I.e. 2 1's, 5 2's, 3 3's.
-    for (int i = 0; i < completedPizzas.size(); i++) {
-      compPiz = completedPizzas.get(i).getID();
+    for (int j = 0; j < completedPizzas.size(); j++) {
+      compPiz = completedPizzas.get(j).getID();
       arr[compPiz-1] += 1;
     }
-    System.out.println("Total amount of no. 1's: " + arr[0]);
-    System.out.println("Total amount of no. 2's: " + arr[1]);
-    System.out.println("Total amount of no. 3's: " + arr[2]);
+
+    for (int i = 0; i < arr.length; i++) {
+      System.out.println("Total amount of no. " + (i+1) + " " + menu.menuKort.get(i).getName() + "'s: " + arr[i]);
+    }
   }
 
   public void viewCompletedOrders(){
@@ -103,7 +99,7 @@ public class PizzaMain {
     }
   }
 
-  public void deleteUser() {
+  public void deleteActiveOrder() {
     System.out.print("Please enter a number to remove the corresponding order number: ");
     Scanner scan = new Scanner(System.in);
     int removalInt = scan.nextInt()-1;
@@ -127,17 +123,69 @@ public class PizzaMain {
   }
 
   void run(){
-    statistics();
-    //menu.makeMenuKort();
-    //menu.displayMenuKort();
-    //System.out.println();
-    //viewActiveOrders();
-    //viewCompletedOrders();
-    //activePizzas.add(createNewOrder());
-    //System.out.println(activePizzas);
-    //deleteUser();
-    //pizzaFiles.saveCompletedPizzas(completedPizzas);
-    //pizzaFiles.saveActivePizzas(activePizzas);
+    DisplayMenu displayMenu =
+        new DisplayMenu(
+            "Menu:",
+            "Please choose option: ",
+            new String[] {
+            "1. View pizza menu", "2. Create new order", "3. Delete order / Add completed order",
+            "4. View active orders", "5. view completed orders", "6. View statistics over completed orders",
+            "9. Quit"});
+
+    displayMenu.printMenu();
+    boolean isRunning = true;
+
+    while(isRunning){
+      int choice = displayMenu.readChoice();
+      switch (choice) {
+        case 1:
+          menu.displayMenuKort();
+          displayMenu.printMenu();
+          break;
+
+        case 2:
+          activePizzas.add(createNewOrder());
+          pizzaFiles.saveActivePizzas(activePizzas);
+          displayMenu.printMenu();
+          break;
+
+        case 3:
+          deleteActiveOrder();
+          pizzaFiles.saveCompletedPizzas(completedPizzas);
+          pizzaFiles.saveActivePizzas(activePizzas);
+          displayMenu.printMenu();
+          break;
+
+        case 4:
+          viewActiveOrders();
+          displayMenu.printMenu();
+          break;
+
+        case 5:
+          viewCompletedOrders();
+          displayMenu.printMenu();
+          break;
+
+        case 6:
+          ViewStatistics();
+          displayMenu.printMenu();
+          break;
+
+        case 42:
+          System.out.println("Du har fundet meningen med livet! Hav en go' dag! :)");
+          displayMenu.printMenu();
+          break;
+
+        case 9:
+          isRunning = false;
+          break;
+
+        default:
+          System.out.println("Choose one of the designated numbers please.");
+      }
+    }
+    pizzaFiles.saveActivePizzas(activePizzas);
+    pizzaFiles.saveCompletedPizzas(completedPizzas);
   }
 
   public static void main(String[] args) {
