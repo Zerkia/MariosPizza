@@ -1,2 +1,5 @@
 # MariosPizza
-Group Project
+Group Project - Group 7
+
+Nikolaj Engstrøm Pregaard
+Mads Pontoppidan Haderup
