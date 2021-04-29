@@ -48,6 +48,27 @@ public class FileHandler {
     }
   }
 
+  //Prototype file handler for multiple files at once rather than
+  //having to duplicate code.
+  //Is called by savePizzas(Arraylist type (activePizzas, completedPizzas etc),
+  //followed by file name
+  //Example: pizzaFiles.savePizza(activePizza, "aktiveOrdre.txt")
+  /**public void savePizzas(ArrayList<Pizza> pizzas, String fileName) {
+    File file = new File("src/MariosPizza/" + fileName);
+    try{
+      PrintStream save = new PrintStream(file);
+      for (int i = 0; i < pizzas.size(); i++) {
+        save.println(pizzas.get(i).getID());
+        save.println(pizzas.get(i).getCustomerName());
+        save.println(pizzas.get(i).getTime());
+        save.println();
+      }
+      save.close();
+    } catch(FileNotFoundException e) {
+      System.out.println("No file found");
+    }
+  }*/
+
   public ArrayList<String> readActiveOrders() {
     File file = new File("src/MariosPizza/aktiveOrdre.txt");
     ArrayList<String> output = new ArrayList<>();

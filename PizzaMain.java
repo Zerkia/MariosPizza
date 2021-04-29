@@ -23,7 +23,7 @@ public class PizzaMain {
 
   public ArrayList<Pizza> loadActiveOrders() {
     ArrayList<String> load = pizzaFiles.readActiveOrders();
-    ArrayList<Pizza> activePizzas = new ArrayList<>();
+    //ArrayList<Pizza> activePizzas = new ArrayList<>();
 
     //fails if aktiveOrdre.txt is empty, if load.size() <= 0 didn't work.
     //maybe a throw needed?
